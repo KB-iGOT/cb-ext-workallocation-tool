@@ -1,0 +1,58 @@
+{
+  "workOrderId": {
+    "type": "keyword"
+  },
+  "createdBy": {
+    "type": "keyword"
+  },
+  "updatedBy": {
+    "type": "keyword"
+  },
+  "createdAt": {
+    "type": "date",
+    "format": [
+      "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+      "epoch_millis"
+    ]
+  },
+  "updatedAt": {
+    "type": "date",
+    "format": [
+      "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+      "epoch_millis"
+    ]
+  },
+  "workOrderName": {
+    "type": "text",
+    "fields": {
+      "keyword": {
+        "type": "keyword"
+      }
+    }
+  },
+  "publishedOn": {
+    "type": "date",
+    "format": [
+      "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+      "epoch_millis"
+    ]
+  },
+  "publishedBy": {
+    "type": "keyword"
+  },
+  "workOrderStatus": {
+    "type": "keyword"
+  },
+  "generatedWorkOrderPdfLink": {
+    "type": "keyword"
+  },
+  "signedPdfLink": {
+    "type": "keyword"
+  },
+  "userIds": {
+    "type": "keyword"
+  },
+  "workAllocationIds": {
+    "type": "keyword"
+  }
+}

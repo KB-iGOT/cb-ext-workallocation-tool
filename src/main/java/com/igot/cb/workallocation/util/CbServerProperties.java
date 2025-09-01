@@ -46,36 +46,6 @@ public class CbServerProperties {
     @Value("${redis.connection.timeout}")
     private long redisConnectionTimeout;
 
-    @Value("${validation.required-fields.educationalQualification}")
-    private String educationalQualificationMandatoryFields;
-
-    @Value("${validation.required-fields.serviceHistory}")
-    private String serviceHistoryMandatoryFields;
-
-    @Value("${validation.required-fields.achievement}")
-    private String achievementsMandatoryFields;
-
-    @Value("${context.types}")
-    private String[] contextType;
-
-    @Value("${basic.profile.fields}")
-    private String basicProfileFields;
-
-    @Value("${profile.completion.required.fields}")
-    private String profileCompletionRequiredFields;
-
-    @Value("${profile.completion.extended.fields}")
-    private List<String> extendedFieldsConfig;
-
-    @Value("${profile.completion.field.weight}")
-    private double fieldWeight;
-
-    @Value("${community.base.url}")
-    private String communityBaseUrl;
-
-    @Value("${community.post.count.api.url}")
-    private String communityPostCountApiUrl;
-
     @Value("${redis.timeout}")
     private String redisTimeout;
 
@@ -129,5 +99,17 @@ public class CbServerProperties {
 
     @Value("${user.profile.index}")
     public String userProfileIndex;
+
+    @Value("${workallocation.entity}")
+    private String workAllocationEntity;
+
+    @Value("${elastic.field.workallocation.json.path}")
+    private String elasticWorkAllocationJsonPath;
+
+    @Value("${workorder.entity}")
+    private String workOrderEntity;
+
+    @Value("${elastic.field.workorder.json.path}")
+    private String elasticWorkOrderJsonPath;
 
 }

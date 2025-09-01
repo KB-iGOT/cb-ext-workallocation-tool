@@ -1,0 +1,115 @@
+{
+  "workAllocationId": {
+    "type": "keyword"
+  },
+  "designation": {
+    "type": "keyword"
+  },
+  "userId": {
+    "type": "keyword"
+  },
+  "userName": {
+    "type": "keyword"
+  },
+  "description": {
+    "type": "text"
+  },
+  "workOrderId": {
+    "type": "keyword"
+  },
+  "roleActivitiesDetails": {
+    "type": "nested",
+    "properties": {
+      "type": {
+        "type": "keyword"
+      },
+      "description": {
+        "type": "text"
+      },
+      "activities": {
+        "type": "keyword"
+      },
+      "submissionUserId": {
+        "type": "keyword"
+      },
+      "submissionUserName": {
+        "type": "keyword"
+      }
+    }
+  },
+  "competenciesV6": {
+    "type": "nested",
+    "properties": {
+      "competencyAreaIdentifier": {
+        "type": "keyword"
+      },
+      "competencyAreaRefId": {
+        "type": "keyword"
+      },
+      "competencyAreaName": {
+        "type": "keyword"
+      },
+      "competencyAreaDescription": {
+        "type": "text"
+      },
+      "competencyThemeIdentifier": {
+        "type": "keyword"
+      },
+      "competencyThemeRefId": {
+        "type": "keyword"
+      },
+      "competencyThemeName": {
+        "type": "keyword"
+      },
+      "competencyThemeType": {
+        "type": "keyword"
+      },
+      "competencyThemeDescription": {
+        "type": "text"
+      },
+      "competencyThemeAdditionalProperties": {
+        "type": "object",
+        "dynamic": true
+      },
+      "competencySubThemeIdentifier": {
+        "type": "keyword"
+      },
+      "competencySubThemeRefId": {
+        "type": "keyword"
+      },
+      "competencySubThemeName": {
+        "type": "keyword"
+      },
+      "competencySubThemeDescription": {
+        "type": "text"
+      },
+      "competencySubThemeAdditionalProperties": {
+        "type": "object",
+        "dynamic": true
+      }
+    }
+  },
+  "workAllocationStatus": {
+    "type": "keyword"
+  },
+  "createdOn": {
+    "type": "date",
+    "format": [
+      "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+      "epoch_millis"
+    ]
+  },
+  "updatedOn": {
+    "type": "date",
+    "format": [
+      "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+      "epoch_millis"
+    ]
+  },
+  "createdBy": {
+    "type": "keyword"
+  },
+  "updatedBy": {
+    "type": "keyword"
+  }
+}
