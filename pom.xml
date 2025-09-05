@@ -192,6 +192,12 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>net.karmayogibharat</groupId>
+			<artifactId>cloud-store-sdk_2.12</artifactId>
+			<version>1.4.8</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

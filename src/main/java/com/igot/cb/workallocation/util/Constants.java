@@ -24,7 +24,6 @@ public class Constants {
     public static final String SUCCESS = "success";
     public static final String FAILED = "Failed";
     public static final String ERROR_MESSAGE = "errmsg";
-    public static final String INDEX_TYPE = "_doc";
     public static final String ERROR = "ERROR";
     public static final String DOT_SEPARATOR = ".";
     public static final String SHA_256_WITH_RSA = "SHA256withRSA";
@@ -49,7 +48,6 @@ public class Constants {
     public static final String ON = "ON";
     public static final String ENCRYPTION_KEY = "sunbird_encryption_key";
     public static final String USER_ORG_SERVICE_PREFIX = "UOS_";
-    public static final String ORG_CUSTOM_FIELDS = "orgCustomFields";
     public static final String X_AUTH_TOKEN = "x-authenticated-user-token";
     public static final String USER_ID_DOESNT_EXIST = "User Id doesn't exist! Please supply a valid auth token";
     public static final String API_CREATE_WORK_ALLOCATION = "api.work.allocation.create";
@@ -57,11 +55,13 @@ public class Constants {
     public static final String DRAFT = "Draft";
     public static final String DATA = "data";
     public static final String TABLE_WORK_ALLOCATION = "workallocation";
-    public static final String WORK_ALLOCATION_ID = "workallocationid";
     public static final String WORK_ORDER_ID = "workorderid";
     public static final String TABLE_WORK_ORDER = "workorder";
     public static final String TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
     public static final String API_UPDATE_WORK_ALLOCATION = "api.work.allocation.update";
+    public static final String API_UPDATE_WORK_ORDER = "api.work.order.update" ;
+    public static final String API_FILE_UPLOAD = "api.file.upload";
+    public static final String USER_ID = "userId";
 
     private Constants() {
     }

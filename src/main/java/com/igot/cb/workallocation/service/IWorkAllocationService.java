@@ -27,4 +27,21 @@ public interface IWorkAllocationService {
      */
     ApiResponse createWorkOrder(String authUserToken, WorkOrderDTO workOrderDTO);
 
+    /**
+     * Updates an existing work allocation.
+     *
+     * @param authUserToken the authentication token of the user
+     * @param workAllocation the updated work allocation details
+     * @return ApiResponse indicating the result of the operation
+     */
+    ApiResponse updateWorkAllocation(String authUserToken, WorkAllocationDTO workAllocation);
+
+    /**
+     * Updates an existing work order.
+     *
+     * @param authUserToken the authentication token of the user
+     * @param workOrder the updated work order details
+     * @return ApiResponse indicating the result of the operation
+     */
+    ApiResponse updateWorkOrder(String authUserToken, WorkOrderDTO workOrder);
 }

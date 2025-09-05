@@ -49,4 +49,14 @@ public interface CassandraOperation {
 
         public List<Map<String, Object>> getAllRecordsByPrimaryKey(String keyspaceName, String tableName,
                         Map<String, Object> primaryKey, List<String> fields, int pageSize);
+
+        /**
+         * Upserts a record in Cassandra. If the record exists, it is updated; if not, it is inserted.
+         *
+         * @param keyspaceName The name of the keyspace containing the table.
+         * @param tableName    The name of the table in which to upsert the record.
+         * @param request      A map representing the record to upsert.
+         * @return A map representing the upserted record.
+         */
+        Map<String, Object> upsertRecord(String keyspaceName, String tableName, Map<String, Object> request);
 }

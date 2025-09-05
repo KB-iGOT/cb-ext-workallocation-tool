@@ -263,4 +263,39 @@ public class CassandraOperationImpl implements CassandraOperation {
         }
         return allResults;
     }
+
+    /**
+     * Upserts a record in Cassandra. If the record exists, it is updated; if not, it is inserted.
+     *
+     * @param keyspaceName The name of the keyspace containing the table.
+     * @param tableName    The name of the table in which to upsert the record.
+     * @param request      A map representing the record to upsert.
+     * @return A map representing the upserted record.
+     */
+    @Override
+    public Map<String, Object> upsertRecord(String keyspaceName, String tableName, Map<String, Object> request) {
+        long startTime = System.currentTimeMillis();
+        logger.debug("Cassandra Service upsertRecord method started at ==" + startTime);
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            String query = CassandraUtil.getPreparedStatement(keyspaceName, tableName, request);
+            CqlSession session = connectionManager.getSession(keyspaceName);
+            PreparedStatement statement = session.prepare(query);
+            BoundStatement boundStatement = statement.bind(request.values().toArray());
+            session.execute(boundStatement);
+            response.put(Constants.RESPONSE, Constants.SUCCESS);
+            if (tableName.equalsIgnoreCase(Constants.TABLE_WORK_ALLOCATION)) {
+                logger.info("Cassandra Service upsertRecord in user table: " + request);
+            }
+        } catch (Exception e) {
+            logger.error(Constants.EXCEPTION_MSG_UPDATE + tableName + " : " + e.getMessage(), e);
+            String errMsg = String.format("Exception occurred while upserting record to %s: %s", tableName, e.getMessage());
+            response.put(Constants.RESPONSE, Constants.FAILED);
+            response.put(Constants.ERROR_MESSAGE, errMsg);
+        } finally {
+            logQueryElapseTime("upsertRecord", startTime, "INSERT query");
+        }
+        return response;
+    }
 }

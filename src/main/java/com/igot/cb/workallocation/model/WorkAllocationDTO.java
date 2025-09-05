@@ -11,7 +11,6 @@ import java.util.Map;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WorkAllocationDTO {
-    private String workAllocationId;
     private String designation;
     private String userId;
     private String userName;
