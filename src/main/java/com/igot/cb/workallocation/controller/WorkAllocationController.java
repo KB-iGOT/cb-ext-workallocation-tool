@@ -55,4 +55,21 @@ public class WorkAllocationController {
         return new ResponseEntity<>(uploadResponse, uploadResponse.getResponseCode());
     }
 
+    @GetMapping("/workallocation/read/{workOrderId}/{userId}")
+    public ResponseEntity<ApiResponse> readWorkAllocation(
+            @RequestHeader(Constants.X_AUTH_TOKEN) String authUserToken,
+            @PathVariable(Constants.WORK_ORDER_ID_KEY) String workOrderId,
+            @PathVariable(Constants.USER_ID) String userId) {
+        ApiResponse response = workAllocationService.readWorkAllocation(authUserToken, workOrderId, userId);
+        return ResponseEntity.status(response.getResponseCode()).body(response);
+    }
+
+    @GetMapping("/workorder/read/{workOrderId}")
+    public ResponseEntity<ApiResponse> readWorkOrder(
+            @RequestHeader(Constants.X_AUTH_TOKEN) String authUserToken,
+            @PathVariable(Constants.WORK_ORDER_ID_KEY) String workOrderId) {
+        ApiResponse response = workAllocationService.readWorkOrder(authUserToken, workOrderId);
+        return ResponseEntity.status(response.getResponseCode()).body(response);
+    }
+
 }

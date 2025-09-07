@@ -76,6 +76,9 @@ public class Constants {
     public static final String HEADER = "header";
     public static final String FOOTER = "footer";
     public static final String PDF = ".pdf";
+    public static final String API_GET_WORK_ALLOCATION = "api.work.allocation.read";
+    public static final String API_GET_WORK_ORDER = "api.work.order.read";
+    public static final String WORK_ORDER_ID_KEY = "workOrderId";
 
     private Constants() {
     }

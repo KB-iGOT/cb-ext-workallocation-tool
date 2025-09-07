@@ -44,4 +44,23 @@ public interface IWorkAllocationService {
      * @return ApiResponse indicating the result of the operation
      */
     ApiResponse updateWorkOrder(String authUserToken, WorkOrderDTO workOrder);
+
+    /**
+     * Reads a work allocation by work order ID and user ID.
+     *
+     * @param authUserToken the authentication token of the user
+     * @param workOrderId   the ID of the work order
+     * @param userId        the ID of the user
+     * @return ApiResponse containing the work allocation details or an error response
+     */
+    ApiResponse readWorkAllocation(String authUserToken, String workOrderId, String userId);
+
+    /**
+     * Reads a work order by its ID.
+     *
+     * @param authUserToken the authentication token of the user
+     * @param workOrderId   the ID of the work order
+     * @return ApiResponse containing the work order details or an error response
+     */
+    ApiResponse readWorkOrder(String authUserToken, String workOrderId);
 }

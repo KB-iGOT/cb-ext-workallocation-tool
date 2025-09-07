@@ -405,4 +405,67 @@ public class WorkAllocationServiceImpl implements IWorkAllocationService {
         existingWorkOrder.setUpdatedBy(userId);
         existingWorkOrder.setUpdatedAt(getFormattedCurrentTime(new Timestamp(System.currentTimeMillis())));
     }
+
+    @Override
+    public ApiResponse readWorkAllocation(String authUserToken, String workOrderId, String userId) {
+        logger.info("WorkAllocationServiceImpl::getWorkAllocation started");
+        ApiResponse response = ProjectUtil.createDefaultResponse(Constants.API_GET_WORK_ALLOCATION);
+        String tokenUserId = accessTokenValidator.fetchUserIdFromAccessToken(authUserToken);
+        if (StringUtils.isEmpty(tokenUserId)) {
+            updateErrorDetails(response, Constants.USER_ID_DOESNT_EXIST, HttpStatus.BAD_REQUEST);
+            return response;
+        }
+        if (StringUtils.isEmpty(workOrderId) || StringUtils.isEmpty(userId)) {
+            updateErrorDetails(response, "workOrderId and userId are required", HttpStatus.BAD_REQUEST);
+            return response;
+        }
+        Map<String, Object> propertyMap = new HashMap<>();
+        propertyMap.put(Constants.WORK_ORDER_ID_KEY, workOrderId);
+        propertyMap.put(Constants.USER_ID, userId);
+        List<Map<String, Object>> resultList = cassandraOperation.getRecordsByPropertiesByKey(
+                Constants.KEYSPACE_SUNBIRD, Constants.TABLE_WORK_ALLOCATION, propertyMap, null, null);
+        if (resultList == null || resultList.isEmpty()) {
+            updateErrorDetails(response, "No work allocation found for given ids", HttpStatus.NOT_FOUND);
+            return response;
+        }
+        try {
+            String dataJson = (String) resultList.get(0).get(Constants.DATA);
+            Map<String, Object> dataMap = mapper.readValue(dataJson, new TypeReference<Map<String, Object>>() {
+            });
+            response.getResult().put(Constants.RESPONSE, dataMap);
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to deserialize work allocation data", e);
+            updateErrorDetails(response, "Failed to deserialize work allocation data", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
+    @Override
+    public ApiResponse readWorkOrder(String authUserToken, String workOrderId) {
+        ApiResponse response = ProjectUtil.createDefaultResponse(Constants.API_GET_WORK_ORDER);
+        try {
+            String userId = accessTokenValidator.fetchUserIdFromAccessToken(authUserToken);
+            if (StringUtils.isEmpty(userId)) {
+                updateErrorDetails(response, Constants.USER_ID_DOESNT_EXIST, HttpStatus.BAD_REQUEST);
+                return response;
+            }
+            Map<String, Object> propertyMap = new HashMap<>();
+            propertyMap.put(Constants.WORK_ORDER_ID_KEY, workOrderId);
+            List<Map<String, Object>> resultList = cassandraOperation.getRecordsByPropertiesByKey(
+                    Constants.KEYSPACE_SUNBIRD, Constants.TABLE_WORK_ORDER, propertyMap, null, null);
+            if (resultList.isEmpty()) {
+                updateErrorDetails(response, "Work order not found", HttpStatus.NOT_FOUND);
+                return response;
+            }
+            String dataJson = (String) resultList.get(0).get(Constants.DATA);
+            Map<String, Object> dataMap = mapper.readValue(dataJson, new TypeReference<Map<String, Object>>() {
+            });
+            response.getResult().put(Constants.RESPONSE, dataMap);
+            response.setResponseCode(HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error("Failed to read work order", e);
+            updateErrorDetails(response, "Failed to read work order", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
 }
