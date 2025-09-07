@@ -112,4 +112,22 @@ public class CbServerProperties {
     @Value("${elastic.field.workorder.json.path}")
     private String elasticWorkOrderJsonPath;
 
+    @Value("${cloud.storage.type.name}")
+    private String cloudStorageTypeName;
+
+    @Value("${cloud.storage.secret}")
+    private String cloudStorageSecret;
+
+    @Value("${cloud.storage.key}")
+    private String cloudStorageKey;
+
+    @Value("${cloud.storage.endpoint}")
+    private String cloudStorageEndpoint;
+
+    @Value("${cloud.container.name")
+    private String cloudContainerName;
+
+    @Value("${cloud.folder.name")
+    private String cloudFolderName;
+
 }

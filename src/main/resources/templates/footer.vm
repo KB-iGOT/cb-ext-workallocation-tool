@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-size: 10px; font-family: Arial, sans-serif; }
+        .footer {
+            border-top: 1px dashed #000;
+            padding-top: 5px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .approval {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="footer">
+    ---------------------------------- End of document ----------------------------------
+    <div class="approval">
+        <span>Approved On</span>
+        <span>Signature</span>
+    </div>
+</div>
+</body>
+</html>

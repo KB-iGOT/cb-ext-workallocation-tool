@@ -62,6 +62,20 @@ public class Constants {
     public static final String API_UPDATE_WORK_ORDER = "api.work.order.update" ;
     public static final String API_FILE_UPLOAD = "api.file.upload";
     public static final String USER_ID = "userId";
+    public static final String NAME = "name";
+    public static final String URL = "url";
+    public static final String PDF_UPLOAD_GCP_CONTAINER = "pdf.upload.gcp.container";
+    public static final String HTML = ".html";
+    public static final String UD_HTML_FILE_PATH = "ud_htmlFilePath";
+    public static final String UD_FILE_NAME = "ud_fileName";
+    public static final String UD_HTML_HEADER_FILE_PATH = "ud_htmlHeaderFilePath";
+    public static final String UD_HTML_FOOTER_FILE_PATH = "ud_htmlFooterFilePath";
+    public static final String TEMPLATES_HEADER_VM = "templates/header.vm";
+    public static final String TEMPLATES_FOOTER_VM = "templates/footer.vm";
+    public static final String TEMPLATES_CONTENT_VM = "templates/content.vm";
+    public static final String HEADER = "header";
+    public static final String FOOTER = "footer";
+    public static final String PDF = ".pdf";
 
     private Constants() {
     }

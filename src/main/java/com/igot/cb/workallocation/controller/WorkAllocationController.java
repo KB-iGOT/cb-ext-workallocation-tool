@@ -48,4 +48,11 @@ public class WorkAllocationController {
         return new ResponseEntity<>(workAllocationService.updateWorkOrder(authUserToken, workAllocation),
                 HttpStatus.OK);
     }
+
+    @PostMapping("/upload/pdf/workorder")
+    public ResponseEntity<ApiResponse> uploadFileToGCPContainer(@Valid @RequestBody Map<String, Object> requestBody, @RequestHeader("x-authenticated-user-token") String authUserToken) {
+        ApiResponse uploadResponse = storageService.uploadFileToGCPContainer(requestBody, authUserToken);
+        return new ResponseEntity<>(uploadResponse, uploadResponse.getResponseCode());
+    }
+
 }
