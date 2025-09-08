@@ -424,7 +424,7 @@ public class WorkAllocationServiceImpl implements IWorkAllocationService {
         propertyMap.put(Constants.USER_ID, userId);
         List<Map<String, Object>> resultList = cassandraOperation.getRecordsByPropertiesByKey(
                 Constants.KEYSPACE_SUNBIRD, Constants.TABLE_WORK_ALLOCATION, propertyMap, null, null);
-        if (resultList == null || resultList.isEmpty()) {
+        if (CollectionUtils.isEmpty(resultList)) {
             updateErrorDetails(response, "No work allocation found for given ids", HttpStatus.NOT_FOUND);
             return response;
         }
@@ -433,9 +433,11 @@ public class WorkAllocationServiceImpl implements IWorkAllocationService {
             Map<String, Object> dataMap = mapper.readValue(dataJson, new TypeReference<Map<String, Object>>() {
             });
             response.getResult().put(Constants.RESPONSE, dataMap);
-        } catch (JsonProcessingException e) {
+            response.setResponseCode(HttpStatus.OK);
+        } catch (Exception e) {
             logger.error("Failed to deserialize work allocation data", e);
             updateErrorDetails(response, "Failed to deserialize work allocation data", HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
         }
         return response;
     }
