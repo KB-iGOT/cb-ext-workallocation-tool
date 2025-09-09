@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-size: 10px; font-family: Arial, sans-serif; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+        .title {
+            font-weight: bold;
+        }
+        .page-num {
+            font-size: 9px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="title">
+        DoPT (Department of Personnel and Training)
+    </div>
+    <div class="page-num">
+        [page]/[toPage]
+    </div>
+</div>
+<div style="font-size:9px;">
+    Work order - $person_name (draft for approval)<br/>
+    Printed at $print_time
+</div>
+</body>
+</html>

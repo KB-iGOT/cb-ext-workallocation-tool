@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 12px; }
+        h3 { margin: 10px 0 5px 0; }
+        h4 { margin: 15px 0 5px 0; }
+        p { margin: 0 0 10px 0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 6px;
+            vertical-align: top;
+        }
+        th {
+            background: #f2f2f2;
+        }
+        small {
+            color: #555;
+        }
+        ul { margin: 0; padding-left: 15px; }
+    </style>
+</head>
+<body>
+
+<section>
+    <h3>Work Order: ${workOrderId}</h3>
+    <p><strong>User ID:</strong> ${userId}</p>
+    <p><strong>Designation:</strong> ${designation}</p>
+    <p><em>${description}</em></p>
+
+    <h4>Role Activities</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Role Type</th>
+                <th>Description</th>
+                <th>Activities</th>
+                <th>Submit To</th>
+            </tr>
+        </thead>
+        <tbody>
+            #if ($roleActivitiesDetails && $roleActivitiesDetails.size() > 0)
+                #foreach ($role in $roleActivitiesDetails)
+                    <tr>
+                        <td><strong>${role.type}</strong></td>
+                        <td>${role.description}</td>
+                        <td>
+                            #if ($role.activities && $role.activities.size() > 0)
+                                <ul>
+                                    #foreach ($activity in $role.activities)
+                                        <li>${activity}</li>
+                                    #end
+                                </ul>
+                            #else
+                                N/A
+                            #end
+                        </td>
+                        <td>${role.submissionUserName} (${role.submissionUserId})</td>
+                    </tr>
+                #end
+            #else
+                <tr>
+                    <td colspan="4">No role activities available</td>
+                </tr>
+            #end
+        </tbody>
+    </table>
+
+    <h4>Competencies</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Competency Area</th>
+                <th>Theme</th>
+                <th>Sub-Theme</th>
+            </tr>
+        </thead>
+        <tbody>
+            #if ($competenciesV6 && $competenciesV6.size() > 0)
+                #foreach ($comp in $competenciesV6)
+                    <tr>
+                        <td>
+                            <strong>${comp.competencyAreaName}</strong><br/>
+                            <small>${comp.competencyAreaDescription}</small>
+                        </td>
+                        <td>
+                            ${comp.competencyThemeName}<br/>
+                            <small>${comp.competencyThemeDescription}</small>
+                        </td>
+                        <td>
+                            ${comp.competencySubThemeName}<br/>
+                            <small>${comp.competencySubThemeDescription}</small>
+                        </td>
+                    </tr>
+                #end
+            #else
+                <tr>
+                    <td colspan="3">No competencies available</td>
+                </tr>
+            #end
+        </tbody>
+    </table>
+</section>
+
+</body>
+</html>
