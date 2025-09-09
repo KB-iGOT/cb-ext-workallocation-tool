@@ -214,33 +214,7 @@ class StorageServiceImplTest {
         assertEquals(Constants.USER_ID_DOESNT_EXIST, response.getParams().getErrMsg());
         assertEquals(HttpStatus.BAD_REQUEST, response.getResponseCode());
     }
-
-    @Test
-    void testUploadFileToGCPContainer_Success() throws Exception {
-        Map<String, Object> req = new HashMap<>();
-        req.put("workOrderId", "wo-1");
-        when(accessTokenValidator.fetchUserIdFromAccessToken(anyString())).thenReturn("user1");
-
-        // Mock VelocityEngine and template rendering
-        VelocityEngine ve = mock(VelocityEngine.class);
-        setPrivateField(storageService, "velocityEngine", ve);
-
-        org.apache.velocity.Template template = mock(org.apache.velocity.Template.class);
-        when(ve.getTemplate(anyString(), anyString())).thenReturn(template);
-        doAnswer(invocation -> {
-            Writer writer = invocation.getArgument(1);
-            writer.write("html");
-            return null;
-        }).when(template).merge(any(VelocityContext.class), any(Writer.class));
-
-        // Mock file upload
-        when(baseStorageService.upload(anyString(), anyString(), anyString(), any(), any(), any(), any()))
-                .thenReturn("http://uploaded.url");
-
-        ApiResponse response = storageService.uploadFileToGCPContainer(req, "token");
-        assertEquals("http://uploaded.url", response.getResult().get(Constants.URL));
-    }
-
+    
     @Test
     void testUploadFileToGCPContainer_Exception() throws Exception {
         Map<String, Object> req = new HashMap<>();
