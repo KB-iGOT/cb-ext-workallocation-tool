@@ -14,5 +14,5 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-COPY workallocation-0.0.1-SNAPSHOT.jar /opt/
-CMD ["/bin/bash", "-c", "java -XX:+PrintFlagsFinal $JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -jar /opt/workallocation-0.0.1-SNAPSHOT.jar"]
+COPY workallocation-1.0-SNAPSHOT.jar /opt/
+CMD ["/bin/bash", "-c", "java -XX:+PrintFlagsFinal $JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -jar /opt/workallocation-1.0-SNAPSHOT.jar"]
